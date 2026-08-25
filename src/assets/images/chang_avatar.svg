@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%" shape-rendering="crispEdges">
+  <!-- Solid White Background -->
+  <rect width="400" height="400" fill="#FFFFFF"/>
+
+  <!-- Pixel Art Group -->
+  <g id="chang-pixel-avatar">
+    <!-- Base Body & Dark Denim Jacket -->
+    <!-- Shoulders & Torso -->
+    <path d="M110,260 Q80,310 75,370 L325,370 Q320,310 290,260 Z" fill="#1E232B"/>
+    <path d="M120,265 L100,370 L115,370 L132,275 Z" fill="#171A20"/>
+    <path d="M280,265 L300,370 L285,370 L268,275 Z" fill="#171A20"/>
+    <path d="M140,255 L140,370 L260,370 L260,255 Z" fill="#242B35"/>
+    
+    <!-- Inner Shirt (Cream White) -->
+    <path d="M172,270 Q200,295 228,270 L228,370 L172,370 Z" fill="#FBF7EE"/>
+    <path d="M175,272 Q200,292 225,272" fill="none" stroke="#E2DAC8" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Neck -->
+    <rect x="180" y="240" width="40" height="40" fill="#F3C3A8"/>
+    <path d="M180,240 Q200,262 220,240 Z" fill="#E4AA8D"/>
+
+    <!-- Jacket Collar & Placket (Navy Denim) -->
+    <!-- Left Collar (from viewer) -->
+    <polygon points="152,250 178,320 188,318 178,255" fill="#2B3340"/>
+    <polygon points="152,250 178,320 173,322 147,252" fill="#1E242D"/>
+    <!-- Right Collar -->
+    <polygon points="248,250 222,320 212,318 222,255" fill="#2B3340"/>
+    <polygon points="248,250 222,320 227,322 253,252" fill="#1E242D"/>
+
+    <!-- Front Center Placket -->
+    <rect x="194" y="318" width="12" height="52" fill="#1B2028"/>
+    <!-- Silver Buttons -->
+    <circle cx="200" cy="328" r="4" fill="#EAEFF5"/>
+    <circle cx="200" cy="328" r="2.5" fill="#CBD5E1"/>
+    <circle cx="200" cy="355" r="4" fill="#EAEFF5"/>
+    <circle cx="200" cy="355" r="2.5" fill="#CBD5E1"/>
+
+    <!-- Right Chest Pocket with Flap (viewer's right) -->
+    <rect x="232" y="315" width="34" height="38" rx="3" fill="#1C2129" stroke="#5D6A7E" stroke-width="2.5" stroke-dasharray="4,3"/>
+    <path d="M230,314 L268,314 L266,324 L232,324 Z" fill="#29313D"/>
+    <circle cx="249" cy="319" r="2.5" fill="#CBD5E1"/>
+
+    <!-- Left Chest Pocket line -->
+    <rect x="134" y="315" width="34" height="38" rx="3" fill="#1C2129" stroke="#5D6A7E" stroke-width="2.5" stroke-dasharray="4,3"/>
+
+    <!-- White Stitching Accents -->
+    <path d="M125,270 L85,370" fill="none" stroke="#7A8B9E" stroke-width="2" stroke-dasharray="4,3"/>
+    <path d="M275,270 L315,370" fill="none" stroke="#7A8B9E" stroke-width="2" stroke-dasharray="4,3"/>
+    <path d="M152,250 L125,270" fill="none" stroke="#7A8B9E" stroke-width="2" stroke-dasharray="4,3"/>
+    <path d="M248,250 L275,270" fill="none" stroke="#7A8B9E" stroke-width="2" stroke-dasharray="4,3"/>
+
+    <!-- Head & Face (Fair Warm Chibi Skin) -->
+    <!-- Ears -->
+    <ellipse cx="108" cy="225" rx="18" ry="24" fill="#FAD1BC"/>
+    <ellipse cx="108" cy="225" rx="10" ry="14" fill="#ECA98B"/>
+    <ellipse cx="292" cy="225" rx="18" ry="24" fill="#FAD1BC"/>
+    <ellipse cx="292" cy="225" rx="10" ry="14" fill="#ECA98B"/>
+
+    <!-- Face Shape -->
+    <path d="M118,170 C118,110 282,110 282,170 C282,235 258,260 200,260 C142,260 118,235 118,170 Z" fill="#FFE5D4"/>
+
+    <!-- Soft Peach Blush -->
+    <ellipse cx="145" cy="228" rx="16" ry="8" fill="#F8A793" opacity="0.6"/>
+    <ellipse cx="255" cy="228" rx="16" ry="8" fill="#F8A793" opacity="0.6"/>
+
+    <!-- Cute Curved Smiling Mouth -->
+    <path d="M188,230 Q204,240 224,225" fill="none" stroke="#682A1B" stroke-width="4.5" stroke-linecap="round"/>
+
+    <!-- Nose Pixel Shadow -->
+    <circle cx="204" cy="216" r="2.5" fill="#DFA082"/>
+
+    <!-- Chibi Eyes (Warm Dark Brown / Black) -->
+    <!-- Left Eye (Viewer's Left) -->
+    <rect x="146" y="188" width="28" height="30" rx="10" fill="#241B18"/>
+    <circle cx="160" cy="203" r="11" fill="#422D24"/>
+    <circle cx="163" cy="195" r="4.5" fill="#FFFFFF"/>
+    <circle cx="154" cy="207" r="2" fill="#FFFFFF" opacity="0.7"/>
+
+    <!-- Right Eye (Viewer's Right) -->
+    <rect x="226" y="188" width="28" height="30" rx="10" fill="#241B18"/>
+    <circle cx="240" cy="203" r="11" fill="#422D24"/>
+    <circle cx="243" cy="195" r="4.5" fill="#FFFFFF"/>
+    <circle cx="234" cy="207" r="2" fill="#FFFFFF" opacity="0.7"/>
+
+    <!-- Eyebrows -->
+    <path d="M142,174 Q160,165 178,172" fill="none" stroke="#251A15" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M222,168 Q240,160 258,168" fill="none" stroke="#251A15" stroke-width="4.5" stroke-linecap="round"/>
+
+    <!-- Glasses (Thin Wireframe Silver / Metal Rounded Rectangles) -->
+    <!-- Left Rim -->
+    <rect x="134" y="178" width="50" height="48" rx="12" fill="none" stroke="#64748B" stroke-width="4.5"/>
+    <rect x="136" y="180" width="46" height="44" rx="10" fill="none" stroke="#94A3B8" stroke-width="2"/>
+    <!-- Right Rim -->
+    <rect x="216" y="174" width="52" height="48" rx="12" fill="none" stroke="#64748B" stroke-width="4.5"/>
+    <rect x="218" y="176" width="48" height="44" rx="10" fill="none" stroke="#94A3B8" stroke-width="2"/>
+    <!-- Center Bridge -->
+    <path d="M184,196 Q200,190 216,194" fill="none" stroke="#64748B" stroke-width="4.5" stroke-linecap="round"/>
+    <!-- Left & Right Temples to ears -->
+    <path d="M134,196 L108,212" fill="none" stroke="#64748B" stroke-width="4" stroke-linecap="round"/>
+    <path d="M268,192 L292,212" fill="none" stroke="#64748B" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Glasses Lens Glare -->
+    <path d="M140,186 L154,186" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+    <path d="M222,182 L236,182" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- Hair (Spiky Neat Black Chibi Hair) -->
+    <!-- Top & Bangs -->
+    <path d="M100,180 C95,95 160,35 220,38 C265,40 310,80 305,170 C300,150 285,115 270,110 C250,105 235,115 210,105 C180,95 155,115 130,135 C115,150 108,165 100,180 Z" fill="#1C1F26"/>
+    <!-- Hair Strands & Highlights -->
+    <path d="M130,58 Q165,42 205,48" fill="none" stroke="#3D4554" stroke-width="5" stroke-linecap="round"/>
+    <path d="M215,50 Q255,56 280,82" fill="none" stroke="#3D4554" stroke-width="5" stroke-linecap="round"/>
+    <path d="M105,115 Q125,85 155,68" fill="none" stroke="#3D4554" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Forehead Bangs Tufts -->
+    <polygon points="120,135 140,165 135,130" fill="#1C1F26"/>
+    <polygon points="140,120 162,150 155,115" fill="#1C1F26"/>
+    <polygon points="265,115 285,155 288,125" fill="#1C1F26"/>
+    <polygon points="285,145 298,185 302,155" fill="#1C1F26"/>
+
+    <!-- Left & Right Sideburns -->
+    <polygon points="112,175 116,210 125,185" fill="#1C1F26"/>
+    <polygon points="288,175 284,210 275,185" fill="#1C1F26"/>
+  </g>
+</svg>

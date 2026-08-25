@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans TC", "Montserrat", "Zen Maru Gothic", system-ui, sans-serif;
+  
+  /* Okinawa Ocean & Tourism Portal Palette */
+  --color-oki-sky: #2B7DE9;
+  --color-oki-ocean: #0284C7;
+  --color-oki-turquoise: #06B6D4;
+  --color-oki-cyan: #38BDF8;
+  --color-oki-sand: #FFFBF2;
+  --color-oki-coral: #FF5A5F;
+  --color-oki-hibiscus: #E11D48;
+  --color-oki-emerald: #10B981;
+  --color-oki-amber: #F59E0B;
+  --color-oki-purple: #8B5CF6;
+  --color-oki-dark: #1E293B;
+  --color-oki-gray: #F1F5F9;
+}
+
+@layer base {
+  body {
+    @apply bg-[#E9F3FC] text-slate-800 font-sans antialiased selection:bg-sky-200;
+  }
+}
+
+/* Custom Portal Style Utilities */
+.portal-header-gradient {
+  background: linear-gradient(180deg, #1B74E4 0%, #38BDF8 85%, #E9F3FC 100%);
+}
+
+.portal-glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 30px -5px rgba(27, 116, 228, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+}
+
+.portal-bento-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08);
+}
+
+.portal-bento-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px -4px rgba(0, 0, 0, 0.14);
+}
+
+/* Custom Scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Sparkle & Float Animations */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.04); }
+}
+
+.animate-float {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+/* Map Dot Wave */
+@keyframes ripple {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.map-pin-ripple {
+  animation: ripple 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+

@@ -1,0 +1,10 @@
+{
+  "name": "Sampras沖繩員工旅遊",
+  "description": "Sampras 沖繩員工旅遊專屬指南，結合蔚藍海島觀光風格、每日行程、互動地圖、推薦美食購物、即時匯率分帳與團隊旅行工具。",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
