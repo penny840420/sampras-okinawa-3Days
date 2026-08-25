@@ -9,6 +9,14 @@ import iiasImg from '../assets/images/iias_okinawa_toyosaki_1787208775250.jpg';
 import kokusaiYataiImg from '../assets/images/kokusai_yatai_mura_1787208935691.jpg';
 import naminoueShrineImg from '../assets/images/naminoue_shrine_cliff_1787209080759.jpg';
 import senagajimaImg from '../assets/images/senagajima_island_aerial_1787209239571.jpg';
+import shuriTenrouImg from '../assets/images/shuri_tenrou_restaurant.jpg';
+import changAvatarImg from '../assets/images/avatar_chang.png';
+import kamaAvatarImg from '../assets/images/avatar_kama.png';
+import jamesAvatarImg from '../assets/images/avatar_james.png';
+import terryAvatarImg from '../assets/images/avatar_terry.png';
+import kitAvatarImg from '../assets/images/avatar_kit.png';
+import pennyAvatarImg from '../assets/images/avatar_penny.png';
+import sophieAvatarImg from '../assets/images/avatar_sophie.png';
 
 export const HERO_SLIDES: HeroSlide[] = [
   {
@@ -135,7 +143,7 @@ export const HIGHLIGHT_CARDS: HighlightCard[] = [
     category: 'food',
     categoryLabel: '琉球美食',
     tag: 'Day 2 晚餐',
-    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80',
+    image: shuriTenrouImg,
     desc: '位於國際通的琉球王朝宮廷料理名店，品嚐道地阿古豬、沖繩懷石料理並可欣賞琉球傳統舞蹈表演。',
     location: '那霸 國際通',
     googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=%E9%A6%96%E9%87%8C%E5%A4%A9%E6%A8%93+%E9%82%A3%E9%9C%B8',
@@ -833,6 +841,7 @@ export const TRIP_DATA: DayPlan[] = [
         id: 'd2-6',
         name: '晚餐：首里天樓 (車程約45min 抵達國際通)',
         time: '17:15 - 18:30',
+        image: shuriTenrouImg,
         description: '前往位於國際通的琉球王朝傳統料理名店「首里天樓」，享用經典琉球宮廷御膳、阿古豬料理、沖繩炒苦瓜與東坡肉（拉芙帝），感受濃厚琉球文化風情。',
         category: 'food',
         tips: ['位於國際通核心地段，用餐完即可直接接續逛街採買', '推薦品嚐琉球宮廷御膳與阿古豬御膳料理'],
@@ -1038,13 +1047,13 @@ export const BUDGET_CATEGORIES_PLAN: BudgetCategoryPlan[] = [
 ];
 
 export const TEAM_MEMBERS: Friend[] = [
-  { id: 'm-7', name: 'Kit', avatar: '✈️', department: '團員' },
-  { id: 'm-1', name: 'Terry', avatar: '👨‍💼', department: '團員' },
-  { id: 'm-2', name: 'Sophie', avatar: '🌸', department: '團員' },
-  { id: 'm-4', name: 'Kama', avatar: '🏄‍♂️', department: '團員' },
-  { id: 'm-5', name: 'Chang', avatar: '🚗', department: '駕駛領航' },
-  { id: 'm-6', name: 'James', avatar: '📸', department: '影像紀錄' },
-  { id: 'm-3', name: 'Penny', avatar: '✨', department: '主辦 / 召集' },
+  { id: 'm-7', name: 'Kit', avatar: '✈️', avatarImg: kitAvatarImg, department: '團員' },
+  { id: 'm-1', name: 'Terry', avatar: '👨‍💼', avatarImg: terryAvatarImg, department: '團員' },
+  { id: 'm-2', name: 'Sophie', avatar: '🌸', avatarImg: sophieAvatarImg, department: '團員' },
+  { id: 'm-4', name: 'Kama', avatar: '🏄‍♂️', avatarImg: kamaAvatarImg, department: '團員' },
+  { id: 'm-3', name: 'Penny', avatar: '✨', avatarImg: pennyAvatarImg, department: '主辦 / 召集' },
+  { id: 'm-6', name: 'James', avatar: '📸', avatarImg: jamesAvatarImg, department: '影像紀錄' },
+  { id: 'm-5', name: 'Chang', avatar: '🚗', avatarImg: changAvatarImg, department: '駕駛領航' },
 ];
 
 export const DEFAULT_EXPENSES: Expense[] = [

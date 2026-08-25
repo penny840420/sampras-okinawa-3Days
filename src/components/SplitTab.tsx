@@ -69,7 +69,7 @@ export const SplitTab = () => {
 
   const splitOptions = useMemo(() => [
     { id: 'fund', name: '公費', avatar: '🪙', isFund: true },
-    ...TEAM_MEMBERS.map((m) => ({ id: m.id, name: m.name, avatar: m.avatar || '👤', isFund: false })),
+    ...TEAM_MEMBERS.map((m) => ({ id: m.id, name: m.name, avatar: m.avatar || '👤', avatarImg: m.avatarImg, isFund: false })),
   ], []);
 
   const totalBudget = TOTAL_TRIP_BUDGET_TWD; // 120,000
@@ -410,8 +410,10 @@ export const SplitTab = () => {
                 className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-100 flex items-center justify-between gap-2"
               >
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <span className="text-2xl p-1 bg-white rounded-xl shadow-2xs shrink-0">
-                    {member.avatar || '👤'}
+                  <span className="text-2xl p-1 bg-white rounded-xl shadow-2xs shrink-0 w-10 h-10 flex items-center justify-center overflow-hidden">
+                    {member.avatarImg
+                      ? <img src={member.avatarImg} alt={member.name} className="w-full h-full object-cover rounded-lg" />
+                      : (member.avatar || '👤')}
                   </span>
                   <p className="text-sm font-black text-slate-800 truncate">
                     {member.name}
