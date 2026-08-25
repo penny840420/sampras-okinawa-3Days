@@ -50,10 +50,17 @@ export const SplitTab = () => {
 
   useEffect(() => {
     const q = query(collection(db, 'expenses'), orderBy('createdAt', 'desc'));
-    const unsub = onSnapshot(q, (snapshot) => {
-      const data = snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as Expense));
-      setExpenses(data);
-      setLoadingExpenses(false);
+    const unsub = onSnapshot(q, async (snapshot) => {
+      if (snapshot.empty) {
+        for (const exp of DEFAULT_EXPENSES) {
+          const { id: _id, ...rest } = exp;
+          await addDoc(collection(db, 'expenses'), { ...rest, createdAt: Date.now() });
+        }
+      } else {
+        const data = snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as Expense));
+        setExpenses(data);
+        setLoadingExpenses(false);
+      }
     });
     return () => unsub();
   }, []);
@@ -264,8 +271,9 @@ export const SplitTab = () => {
             <span className="text-xs font-black text-rose-500 block mb-1">
               總支出
             </span>
+            <p className="text-base sm:text-lg font-black text-rose-600 tracking-tight">NT$</p>
             <p className="text-base sm:text-lg font-black text-rose-600 tracking-tight">
-              NT$ {totalSpent.toLocaleString()}
+              {totalSpent.toLocaleString()}
             </p>
           </div>
 
@@ -602,9 +610,11 @@ export const SplitTab = () => {
                 <button
                   type="button"
                   onClick={() => setShowAddForm(false)}
-                  className="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-all text-xs font-bold"
+                  className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-all shrink-0"
                 >
-                  ✕
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round">
+                    <line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/>
+                  </svg>
                 </button>
               </div>
 
