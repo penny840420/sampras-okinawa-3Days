@@ -79,6 +79,7 @@ export interface Friend {
 }
 
 export interface Expense {
+  isFixed?: boolean;
   id: string;
   day: number;
   amount: number;

@@ -941,6 +941,12 @@ export const TRIP_DATA: DayPlan[] = [
         name: '瀬長島 Umikaji Terrace (拍照・海景・小店・吃午餐)',
         time: '10:15 - 12:00',
         image: senagajimaImg,
+        budget: {
+          unitPriceTwd: 784,
+          unitPriceJpy: '3,605',
+          twd: 3919,
+          jpy: '18,027',
+        },
         description: '車程約 15 分鐘。純白階梯海景露台自由時間！推薦美食小吃（可購買共食）：by・The・Shrimp (炸蝦)、Taco Rice Cafe、親父のまぐろ ウミカジテラス店 (鮪魚丼)、冰塊咖啡廳酒吧。',
         category: 'scenery',
         tips: ['各式美味餐點建議大家買不同品項共食分享', '可近距離觀看飛機降落拍照'],
