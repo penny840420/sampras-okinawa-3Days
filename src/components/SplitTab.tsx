@@ -1,4 +1,6 @@
 import { useState, FormEvent, useMemo, useEffect, type ReactNode } from 'react';
+import { collection, onSnapshot, addDoc, deleteDoc, doc, orderBy, query } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Plus,
@@ -43,7 +45,18 @@ const BUDGET_CATEGORY_LUCIDE_ICONS: Record<
 };
 
 export const SplitTab = () => {
-  const [expenses, setExpenses] = useState<Expense[]>(DEFAULT_EXPENSES);
+  const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [loadingExpenses, setLoadingExpenses] = useState(true);
+
+  useEffect(() => {
+    const q = query(collection(db, 'expenses'), orderBy('createdAt', 'desc'));
+    const unsub = onSnapshot(q, (snapshot) => {
+      const data = snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as Expense));
+      setExpenses(data);
+      setLoadingExpenses(false);
+    });
+    return () => unsub();
+  }, []);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [showAddForm, setShowAddForm] = useState(false);
 
@@ -144,7 +157,7 @@ export const SplitTab = () => {
     );
   }, [expenses, selectedCategory]);
 
-  const handleAddExpense = (e: FormEvent) => {
+  const handleAddExpense = async (e: FormEvent) => {
     e.preventDefault();
     const amountNum = Number(newAmount);
     if (!newAmount || isNaN(amountNum) || amountNum <= 0 || !newNote.trim()) return;
@@ -165,22 +178,18 @@ export const SplitTab = () => {
       createdAt: '剛剛',
     };
 
-    setExpenses([newExp, ...expenses]);
+    await addDoc(collection(db, 'expenses'), { ...newExp, createdAt: Date.now() });
     setNewNote('');
     setNewAmount('');
     setSelectedSplitIds([]);
     setShowAddForm(false);
   };
 
-  const handleDeleteExpense = (id: string) => {
-    setExpenses(expenses.filter((e) => e.id !== id));
+  const handleDeleteExpense = async (id: string) => {
+    await deleteDoc(doc(db, 'expenses', id));
   };
 
-  const handleResetDefault = () => {
-    if (window.confirm('確定要將公費支出紀錄恢復為預設範例資料嗎？')) {
-      setExpenses(DEFAULT_EXPENSES);
-    }
-  };
+  const handleResetDefault = () => {};
 
   const toggleMemberSplit = (memberId: string) => {
     if (selectedSplitIds.includes(memberId)) {
