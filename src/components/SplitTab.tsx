@@ -1,10 +1,11 @@
 import { useState, FormEvent, useMemo, useEffect, type ReactNode } from 'react';
-import { collection, onSnapshot, addDoc, deleteDoc, doc, orderBy, query } from 'firebase/firestore';
+import { collection, onSnapshot, addDoc, deleteDoc, doc, orderBy, query, updateDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Plus,
   Trash2,
+  Pencil,
   Users,
   Wallet,
   PieChart,
@@ -54,7 +55,7 @@ export const SplitTab = () => {
       if (snapshot.empty) {
         for (const exp of DEFAULT_EXPENSES) {
           const { id: _id, ...rest } = exp;
-          await addDoc(collection(db, 'expenses'), { ...rest, createdAt: Date.now() });
+          await addDoc(collection(db, 'expenses'), { ...rest, isFixed: true, createdAt: Date.now() });
         }
       } else {
         const data = snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as Expense));
@@ -164,39 +165,76 @@ export const SplitTab = () => {
     );
   }, [expenses, selectedCategory]);
 
+  const resetForm = () => {
+    setNewNote('');
+    setNewAmount('');
+    setNewCategory('交通');
+    setNewPayerId('fund');
+    setSelectedSplitIds([]);
+    setCurrency('JPY');
+    setEditingExpense(null);
+    setShowAddForm(false);
+  };
+
   const handleAddExpense = async (e: FormEvent) => {
     e.preventDefault();
     const amountNum = Number(newAmount);
     if (!newAmount || isNaN(amountNum) || amountNum <= 0 || !newNote.trim()) return;
 
     const twdAmount = currency === 'JPY' ? Math.round(amountNum * jpyExchangeRate) : amountNum;
+    const splitIds = selectedSplitIds.length > 0 ? selectedSplitIds : ['fund', ...TEAM_MEMBERS.map((m) => m.id)];
 
-    const newExp: Expense = {
-      id: `exp-${Date.now()}`,
-      day: 1,
-      amount: twdAmount,
-      currency,
-      originalAmount: amountNum,
-      category: newCategory,
-      note: newNote.trim(),
-      payerId: newPayerId,
-      splitWithIds:
-        selectedSplitIds.length > 0 ? selectedSplitIds : ['fund', ...TEAM_MEMBERS.map((m) => m.id)],
-      createdAt: '剛剛',
-    };
+    if (editingExpense) {
+      await updateDoc(doc(db, 'expenses', editingExpense.id), {
+        note: newNote.trim(),
+        amount: twdAmount,
+        currency,
+        originalAmount: amountNum,
+        category: newCategory,
+        payerId: newPayerId,
+        splitWithIds: splitIds,
+      });
+    } else {
+      const newExp = {
+        day: 1,
+        amount: twdAmount,
+        currency,
+        originalAmount: amountNum,
+        category: newCategory,
+        note: newNote.trim(),
+        payerId: newPayerId,
+        splitWithIds: splitIds,
+        createdAt: Date.now(),
+      };
+      await addDoc(collection(db, 'expenses'), newExp);
+    }
 
-    await addDoc(collection(db, 'expenses'), { ...newExp, createdAt: Date.now() });
-    setNewNote('');
-    setNewAmount('');
-    setSelectedSplitIds([]);
-    setShowAddForm(false);
+    resetForm();
   };
 
   const handleDeleteExpense = async (id: string) => {
-    await deleteDoc(doc(db, 'expenses', id));
+    if (!window.confirm('確定刪除這筆記帳？')) return;
+    try {
+      await deleteDoc(doc(db, 'expenses', id));
+    } catch (e) {
+      alert('刪除失敗：' + String(e));
+    }
   };
 
   const handleResetDefault = () => {};
+
+  const [editingExpense, setEditingExpense] = useState<Expense | null>(null);
+
+  const startEdit = (item: Expense) => {
+    setEditingExpense(item);
+    setNewNote(item.note);
+    setNewAmount(String(item.originalAmount ?? item.amount));
+    setNewCategory(item.category);
+    setCurrency(item.currency ?? 'TWD');
+    setNewPayerId(item.payerId);
+    setSelectedSplitIds(item.splitWithIds ?? []);
+    setShowAddForm(true);
+  };
 
   const toggleMemberSplit = (memberId: string) => {
     if (selectedSplitIds.includes(memberId)) {
@@ -282,8 +320,9 @@ export const SplitTab = () => {
             <span className="text-xs font-black text-[#16a0fb] block mb-1">
               剩餘公費
             </span>
+            <p className="text-base sm:text-lg font-black text-[#16a0fb] tracking-tight">NT$</p>
             <p className="text-base sm:text-lg font-black text-[#16a0fb] tracking-tight">
-              NT$ {remainingBudget.toLocaleString()}
+              {remainingBudget.toLocaleString()}
             </p>
           </div>
         </div>
@@ -528,44 +567,39 @@ export const SplitTab = () => {
                   key={item.id}
                   className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-100 hover:bg-sky-50/40 hover:border-sky-100 transition-all flex flex-col justify-between"
                 >
-                  {/* Top Row: Category tag, Date / Time, and Delete Action */}
+                  {/* Top Row */}
                   <div className="flex items-center justify-between mb-1.5">
                     <div className="flex items-center gap-2">
-                      <span className="text-[12px] font-black bg-sky-100 text-sky-800 px-2.5 py-0.5 rounded-md">
-                        {item.category}
-                      </span>
+                      <span className="text-[12px] font-black bg-sky-100 text-sky-800 px-2.5 py-0.5 rounded-md">{item.category}</span>
                       {item.createdAt && (
-                        <span className="text-[12px] text-slate-400 font-medium">
-                          {item.createdAt}
-                        </span>
+                        <span className="text-[12px] text-slate-400 font-medium">{item.createdAt}</span>
                       )}
                     </div>
-                    <button
-                      onClick={() => handleDeleteExpense(item.id)}
-                      title="刪除此筆"
-                      className="text-slate-300 hover:text-rose-500 p-1 rounded-lg hover:bg-rose-50 transition-colors"
-                    >
-                      <Trash2 size={14} />
-                    </button>
+                    <div className="flex items-center gap-1">
+                      <button onClick={() => startEdit(item)} className="text-slate-300 hover:text-sky-500 p-1 rounded-lg hover:bg-sky-50 transition-colors">
+                        <Pencil size={14} />
+                      </button>
+                      {!item.isFixed && (
+                        <button onClick={() => handleDeleteExpense(item.id)} className="text-slate-300 hover:text-rose-500 p-1 rounded-lg hover:bg-rose-50 transition-colors">
+                          <Trash2 size={14} />
+                        </button>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Main Title / Note */}
-                  <h5 className="text-[16px] font-black text-slate-800 break-words whitespace-normal leading-snug mb-2">
-                    {item.note}
-                  </h5>
+                  {/* Note */}
+                  <h5 className="text-[16px] font-black text-slate-800 break-words whitespace-normal leading-snug mb-2">{item.note}</h5>
 
-                  {/* Bottom Row: Payer (Left) & Expense Amount (Right Corner) */}
+                  {/* Bottom Row */}
                   <div className="flex items-center justify-between pt-0.5">
                     <p className="text-[14px] text-slate-500 font-medium">
                       墊付人: <span className="font-normal text-slate-700">{payer ? payer.name : '公費'}</span>
                     </p>
                     <div className="flex items-center gap-1.5">
-                      {item.currency === 'JPY' && item.originalAmount && (
-                        <span className="text-[11px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">
-                          ¥ {item.originalAmount.toLocaleString()}
-                        </span>
-                      )}
                       <p className="text-[16px] font-black text-[#16a0fb]">
+                        {item.currency === 'JPY' && item.originalAmount && (
+                          <><span className="text-[#ef652d]">¥{item.originalAmount.toLocaleString()}</span><span className="text-slate-400"> / </span></>
+                        )}
                         NT$ {item.amount.toLocaleString()}
                       </p>
                     </div>
@@ -587,7 +621,7 @@ export const SplitTab = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              onClick={() => setShowAddForm(false)}
+              onClick={resetForm}
               className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs"
               aria-hidden="true"
             />
@@ -605,11 +639,11 @@ export const SplitTab = () => {
                   <div className="w-7 h-7 rounded-lg bg-sky-50 flex items-center justify-center text-[#0086c9]">
                     <Plus size={16} />
                   </div>
-                  <h3 className="text-[18px] font-black text-slate-800">新增公費支出紀錄</h3>
+                  <h3 className="text-[18px] font-black text-slate-800">{editingExpense ? '編輯公費支出紀錄' : '新增公費支出紀錄'}</h3>
                 </div>
                 <button
                   type="button"
-                  onClick={() => setShowAddForm(false)}
+                  onClick={resetForm}
                   className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-all shrink-0"
                 >
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round">
@@ -681,7 +715,7 @@ export const SplitTab = () => {
                         value={newAmount}
                         onChange={(e) => setNewAmount(e.target.value)}
                         placeholder={currency === 'JPY' ? '例如：15000' : '例如：3500'}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-bold outline-none focus:border-[#0086c9] focus:bg-white transition-colors"
+                        className="w-full h-9 bg-slate-50 border border-slate-200 rounded-xl px-3.5 text-xs font-bold outline-none focus:border-[#0086c9] focus:bg-white transition-colors"
                       />
                     </div>
 
@@ -692,15 +726,15 @@ export const SplitTab = () => {
                       <select
                         value={newCategory}
                         onChange={(e) => setNewCategory(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold outline-none focus:bg-white transition-colors"
+                        className="w-full h-9 bg-slate-50 border border-slate-200 rounded-xl px-3 text-xs font-bold outline-none focus:bg-white transition-colors"
                       >
-                        <option value="交通">🚗 交通</option>
-                        <option value="餐費">🥩 餐費</option>
-                        <option value="住宿">🏨 住宿</option>
-                        <option value="保險">🛡️ 保險</option>
-                        <option value="娛樂費用">🎟️ 娛樂費用</option>
-                        <option value="網路費">📶 網路費</option>
-                        <option value="停車費＋ETC">🅿️ 停車費＋ETC</option>
+                        <option value="交通">交通</option>
+                        <option value="餐費">餐費</option>
+                        <option value="住宿">住宿</option>
+                        <option value="保險">保險</option>
+                        <option value="娛樂費用">娛樂費用</option>
+                        <option value="網路費">網路費</option>
+                        <option value="停車費＋ETC">停車費＋ETC</option>
                       </select>
                     </div>
                   </div>
@@ -773,7 +807,7 @@ export const SplitTab = () => {
                     type="submit"
                     className="w-full bg-[#0086c9] hover:bg-[#0074ad] text-white text-[14px] font-black py-2.5 rounded-xl shadow-xs transition-all active:scale-98"
                   >
-                    新增公費支出
+                    {editingExpense ? '儲存變更' : '新增公費支出'}
                   </button>
                 </div>
               </form>

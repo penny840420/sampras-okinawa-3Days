@@ -842,6 +842,12 @@ export const TRIP_DATA: DayPlan[] = [
         name: '晚餐：首里天樓 (車程約45min 抵達國際通)',
         time: '17:15 - 18:30',
         image: shuriTenrouImg,
+        budget: {
+          unitPriceTwd: '1,235',
+          unitPriceJpy: '5,680',
+          twd: 6174,
+          jpy: '28,400',
+        },
         description: '前往位於國際通的琉球王朝傳統料理名店「首里天樓」，享用經典琉球宮廷御膳、阿古豬料理、沖繩炒苦瓜與東坡肉（拉芙帝），感受濃厚琉球文化風情。',
         category: 'food',
         tips: ['位於國際通核心地段，用餐完即可直接接續逛街採買', '推薦品嚐琉球宮廷御膳與阿古豬御膳料理'],
