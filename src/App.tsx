@@ -22,7 +22,7 @@ import okinawaHeroCoverImg from './assets/images/okinawa_sky_sea_full_1787144751
 type MainTab = 'prep' | 'itinerary' | 'budget' | 'currency';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<MainTab>('itinerary');
+  const [activeTab, setActiveTab] = useState<MainTab>('prep');
   const [activeDay, setActiveDay] = useState(1);
 
   const scrollToTop = () => {
