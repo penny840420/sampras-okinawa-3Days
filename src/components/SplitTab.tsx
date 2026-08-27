@@ -698,16 +698,9 @@ export const SplitTab = () => {
                 <div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <div className="mb-1">
-                        <label className="text-[14px] font-bold text-slate-600 whitespace-nowrap">
-                          支出金額 ({currency === 'JPY' ? '¥ 日幣' : 'NT$ 台幣'})
-                        </label>
-                        {currency === 'JPY' && Number(newAmount) > 0 && (
-                          <p className="text-[11px] font-black text-[#0086c9] mt-0.5">
-                            ≈ NT$ {Math.round(Number(newAmount) * jpyExchangeRate).toLocaleString()}
-                          </p>
-                        )}
-                      </div>
+                      <label className="text-[14px] font-bold text-slate-600 whitespace-nowrap block mb-1">
+                        支出金額 ({currency === 'JPY' ? '¥ 日幣' : 'NT$ 台幣'})
+                      </label>
                       <input
                         type="number"
                         required
@@ -717,6 +710,11 @@ export const SplitTab = () => {
                         placeholder={currency === 'JPY' ? '例如：15000' : '例如：3500'}
                         className="w-full h-9 bg-slate-50 border border-slate-200 rounded-xl px-3.5 text-xs font-bold outline-none focus:border-[#0086c9] focus:bg-white transition-colors"
                       />
+                      {currency === 'JPY' && Number(newAmount) > 0 && (
+                        <p className="text-[11px] font-black text-[#0086c9] mt-1">
+                          ≈ NT$ {Math.round(Number(newAmount) * jpyExchangeRate).toLocaleString()}
+                        </p>
+                      )}
                     </div>
 
                     <div>
