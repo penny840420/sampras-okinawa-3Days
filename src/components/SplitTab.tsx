@@ -591,31 +591,31 @@ export const SplitTab = () => {
                   <h5 className="text-[16px] font-black text-slate-800 break-words whitespace-normal leading-snug mb-2">{item.note}</h5>
 
                   {/* Bottom Row */}
-                  <div className="flex items-start justify-between pt-0.5">
-                    <div>
+                  <div className="pt-0.5 space-y-1">
+                    <div className="flex items-center justify-between">
                       <p className="text-[14px] text-slate-500 font-medium">
                         墊付人: <span className="font-normal text-slate-700">{payer ? payer.name : '公費'}</span>
                       </p>
-                      {item.splitWithIds && item.splitWithIds.length > 0 && (
-                        <div className="flex items-center gap-2 mt-0.5 flex-nowrap overflow-x-auto no-scrollbar">
-                          <p className="text-[11px] text-slate-400 whitespace-nowrap">
-                            {item.splitWithIds.map(id => {
-                              if (id === 'fund') return '公費';
-                              return TEAM_MEMBERS.find(m => m.id === id)?.name ?? id;
-                            }).join('・')}
-                          </p>
-                          <p className="text-[11px] font-bold text-slate-500 shrink-0 whitespace-nowrap">
-                            每人約 NT$ {Math.round(item.amount / item.splitWithIds.length).toLocaleString()}
-                          </p>
-                        </div>
-                      )}
+                      <p className="text-[16px] font-black text-[#16a0fb]">
+                        {item.currency === 'JPY' && item.originalAmount && (
+                          <><span className="text-[#ef652d]">¥{item.originalAmount.toLocaleString()}</span><span className="text-slate-400"> / </span></>
+                        )}
+                        NT$ {item.amount.toLocaleString()}
+                      </p>
                     </div>
-                    <p className="text-[16px] font-black text-[#16a0fb]">
-                      {item.currency === 'JPY' && item.originalAmount && (
-                        <><span className="text-[#ef652d]">¥{item.originalAmount.toLocaleString()}</span><span className="text-slate-400"> / </span></>
-                      )}
-                      NT$ {item.amount.toLocaleString()}
-                    </p>
+                    {item.splitWithIds && item.splitWithIds.length > 0 && (
+                      <div className="flex items-center justify-between">
+                        <p className="text-[11px] text-slate-400 whitespace-nowrap overflow-x-auto no-scrollbar">
+                          {item.splitWithIds.map(id => {
+                            if (id === 'fund') return '公費';
+                            return TEAM_MEMBERS.find(m => m.id === id)?.name ?? id;
+                          }).join('・')}
+                        </p>
+                        <p className="text-[11px] font-bold text-slate-500 shrink-0 whitespace-nowrap ml-2">
+                          每人約 NT$ {Math.round(item.amount / item.splitWithIds.length).toLocaleString()}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               );
