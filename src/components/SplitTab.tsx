@@ -747,9 +747,30 @@ export const SplitTab = () => {
 
                 {/* Split with participants selection (including fund) */}
                 <div>
+                  {/* Payer selector */}
+                  <div className="mb-3.5">
+                    <label className="text-[14px] font-bold text-slate-600 block mb-1.5">代墊人</label>
+                    <div className="grid grid-cols-4 gap-1.5">
+                      {splitOptions.map((opt) => (
+                        <button
+                          type="button"
+                          key={opt.id}
+                          onClick={() => setNewPayerId(opt.id)}
+                          className={`w-full py-2 px-1 text-center rounded-xl text-[12px] font-bold transition-all flex items-center justify-center ${
+                            newPayerId === opt.id
+                              ? 'bg-[#0086c9] text-white shadow-xs'
+                              : 'bg-slate-50 text-slate-600 border border-slate-200 hover:border-slate-300'
+                          }`}
+                        >
+                          {opt.name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
                   <div className="flex items-center justify-between mb-1.5">
                     <label className="text-[14px] font-bold text-slate-600">
-                      代墊人 ({selectedSplitIds.length} 個項目)
+                      分攤人員 ({selectedSplitIds.length} 個項目)
                     </label>
                     <div className="flex items-center gap-2">
                       <button
