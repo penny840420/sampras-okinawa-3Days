@@ -597,14 +597,14 @@ export const SplitTab = () => {
                         墊付人: <span className="font-normal text-slate-700">{payer ? payer.name : '公費'}</span>
                       </p>
                       {item.splitWithIds && item.splitWithIds.length > 0 && (
-                        <div className="flex items-center gap-2 mt-0.5">
-                          <p className="text-[11px] text-slate-400">
+                        <div className="flex items-center gap-2 mt-0.5 flex-nowrap overflow-x-auto no-scrollbar">
+                          <p className="text-[11px] text-slate-400 whitespace-nowrap">
                             {item.splitWithIds.map(id => {
                               if (id === 'fund') return '公費';
                               return TEAM_MEMBERS.find(m => m.id === id)?.name ?? id;
                             }).join('・')}
                           </p>
-                          <p className="text-[11px] font-bold text-slate-500 shrink-0">
+                          <p className="text-[11px] font-bold text-slate-500 shrink-0 whitespace-nowrap">
                             每人約 NT$ {Math.round(item.amount / item.splitWithIds.length).toLocaleString()}
                           </p>
                         </div>
