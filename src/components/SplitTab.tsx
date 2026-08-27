@@ -459,7 +459,7 @@ export const SplitTab = () => {
 
         {/* Member Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-          {memberSettlements.map(({ member, paid }) => {
+          {memberSettlements.map(({ member, paid, shouldPay }) => {
             return (
               <div
                 key={member.id}
@@ -476,19 +476,14 @@ export const SplitTab = () => {
                   </p>
                 </div>
 
-                {/* Paid Badge with Light Blue Background & Blue Text */}
-                <div className="text-right shrink-0">
-                  <div
-                    className={`inline-flex flex-col items-end px-3 py-1 rounded-xl ${
-                      paid > 0
-                        ? 'bg-sky-50 text-[#16a0fb]'
-                        : 'bg-slate-100/80 text-slate-400'
-                    }`}
-                  >
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <div className={`inline-flex flex-col items-end px-3 py-1 rounded-xl ${paid > 0 ? 'bg-sky-50 text-[#16a0fb]' : 'bg-slate-100/80 text-slate-400'}`}>
                     <span className="text-[12px] leading-tight">代墊</span>
-                    <span className="text-[14px] leading-tight font-medium">
-                      NT$ {paid.toLocaleString()}
-                    </span>
+                    <span className="text-[14px] leading-tight font-medium">NT$ {paid.toLocaleString()}</span>
+                  </div>
+                  <div className={`inline-flex flex-col items-end px-3 py-1 rounded-xl ${shouldPay > 0 ? 'bg-rose-50 text-rose-500' : 'bg-slate-100/80 text-slate-400'}`}>
+                    <span className="text-[12px] leading-tight">應分攤</span>
+                    <span className="text-[14px] leading-tight font-medium">NT$ {shouldPay.toLocaleString()}</span>
                   </div>
                 </div>
               </div>
