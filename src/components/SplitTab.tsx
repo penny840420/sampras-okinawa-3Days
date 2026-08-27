@@ -595,13 +595,18 @@ export const SplitTab = () => {
                     <p className="text-[14px] text-slate-500 font-medium">
                       墊付人: <span className="font-normal text-slate-700">{payer ? payer.name : '公費'}</span>
                     </p>
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex flex-col items-end gap-0.5">
                       <p className="text-[16px] font-black text-[#16a0fb]">
                         {item.currency === 'JPY' && item.originalAmount && (
                           <><span className="text-[#ef652d]">¥{item.originalAmount.toLocaleString()}</span><span className="text-slate-400"> / </span></>
                         )}
                         NT$ {item.amount.toLocaleString()}
                       </p>
+                      {item.splitWithIds && item.splitWithIds.length > 0 && (
+                        <p className="text-[11px] font-bold text-slate-400">
+                          每人約 NT$ {Math.round(item.amount / item.splitWithIds.length).toLocaleString()}（{item.splitWithIds.length} 人分攤）
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -819,6 +824,11 @@ export const SplitTab = () => {
                       );
                     })}
                   </div>
+                  {selectedSplitIds.length > 0 && Number(newAmount) > 0 && (
+                    <p className="text-[11px] font-black text-[#0086c9] mt-1.5">
+                      每人約 NT$ {Math.round((currency === 'JPY' ? Math.round(Number(newAmount) * jpyExchangeRate) : Number(newAmount)) / selectedSplitIds.length).toLocaleString()}
+                    </p>
+                  )}
                 </div>
 
                 <div className="pt-2">
