@@ -600,7 +600,7 @@ export const SplitTab = () => {
                     {item.splitWithIds && item.splitWithIds.length > 0 && (
                       <div className="flex items-center justify-between">
                         <p className="text-[11px] text-slate-400 whitespace-nowrap overflow-x-auto no-scrollbar">
-                          {item.splitWithIds.map(id => {
+                          <span className="font-bold">分攤人: </span>{item.splitWithIds.map(id => {
                             if (id === 'fund') return '公費';
                             return TEAM_MEMBERS.find(m => m.id === id)?.name ?? id;
                           }).join('・')}
