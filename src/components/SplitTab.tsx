@@ -475,14 +475,14 @@ export const SplitTab = () => {
                     {member.name}
                   </p>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <div className={`flex-1 flex flex-col items-center px-2 py-1.5 rounded-xl ${paid > 0 ? 'bg-sky-50 text-[#16a0fb]' : 'bg-slate-100/80 text-slate-400'}`}>
-                    <span className="text-[11px] leading-tight">代墊</span>
-                    <span className="text-[13px] leading-tight font-bold">NT$ {paid.toLocaleString()}</span>
+                <div className="space-y-1.5">
+                  <div className={`flex items-center justify-between px-3 py-1.5 rounded-xl ${paid > 0 ? 'bg-sky-50 text-[#16a0fb]' : 'bg-slate-100/80 text-slate-400'}`}>
+                    <span className="text-[11px]">代墊</span>
+                    <span className="text-[13px] font-bold">NT$ {paid.toLocaleString()}</span>
                   </div>
-                  <div className={`flex-1 flex flex-col items-center px-2 py-1.5 rounded-xl ${shouldPay > 0 ? 'bg-rose-50 text-rose-500' : 'bg-slate-100/80 text-slate-400'}`}>
-                    <span className="text-[11px] leading-tight">應分攤</span>
-                    <span className="text-[13px] leading-tight font-bold">NT$ {shouldPay.toLocaleString()}</span>
+                  <div className={`flex items-center justify-between px-3 py-1.5 rounded-xl ${shouldPay > 0 ? 'bg-rose-50 text-rose-500' : 'bg-slate-100/80 text-slate-400'}`}>
+                    <span className="text-[11px]">應分攤</span>
+                    <span className="text-[13px] font-bold">NT$ {shouldPay.toLocaleString()}</span>
                   </div>
                 </div>
               </div>
