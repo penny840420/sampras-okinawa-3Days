@@ -698,14 +698,14 @@ export const SplitTab = () => {
                 <div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <div className="flex items-center justify-between gap-1 mb-1">
+                      <div className="mb-1">
                         <label className="text-[14px] font-bold text-slate-600 whitespace-nowrap">
                           支出金額 ({currency === 'JPY' ? '¥ 日幣' : 'NT$ 台幣'})
                         </label>
                         {currency === 'JPY' && Number(newAmount) > 0 && (
-                          <span className="text-[11px] font-black text-[#0086c9] whitespace-nowrap">
+                          <p className="text-[11px] font-black text-[#0086c9] mt-0.5">
                             ≈ NT$ {Math.round(Number(newAmount) * jpyExchangeRate).toLocaleString()}
-                          </span>
+                          </p>
                         )}
                       </div>
                       <input
