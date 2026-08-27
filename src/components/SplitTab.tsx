@@ -604,14 +604,14 @@ export const SplitTab = () => {
                       </p>
                       {item.splitWithIds && item.splitWithIds.length > 0 && (
                         <div className="text-right">
-                          <p className="text-[11px] font-bold text-slate-400">
-                            每人約 NT$ {Math.round(item.amount / item.splitWithIds.length).toLocaleString()}
-                          </p>
                           <p className="text-[11px] text-slate-400">
                             {item.splitWithIds.map(id => {
                               if (id === 'fund') return '公費';
                               return TEAM_MEMBERS.find(m => m.id === id)?.name ?? id;
                             }).join('・')}
+                          </p>
+                          <p className="text-[11px] font-bold text-slate-400">
+                            每人約 NT$ {Math.round(item.amount / item.splitWithIds.length).toLocaleString()}
                           </p>
                         </div>
                       )}
