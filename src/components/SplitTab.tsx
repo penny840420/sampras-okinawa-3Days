@@ -463,9 +463,9 @@ export const SplitTab = () => {
             return (
               <div
                 key={member.id}
-                className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-100 flex items-center justify-between gap-2"
+                className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-100"
               >
-                <div className="flex items-center gap-2.5 min-w-0">
+                <div className="flex items-center gap-2.5 mb-2.5">
                   <span className="text-2xl p-1 bg-white rounded-xl shadow-2xs shrink-0 w-10 h-10 flex items-center justify-center overflow-hidden">
                     {member.avatarImg
                       ? <img src={member.avatarImg} alt={member.name} className="w-full h-full object-cover rounded-lg" />
@@ -475,15 +475,14 @@ export const SplitTab = () => {
                     {member.name}
                   </p>
                 </div>
-
-                <div className="flex items-center gap-1.5 shrink-0">
-                  <div className={`inline-flex flex-col items-end px-3 py-1 rounded-xl ${paid > 0 ? 'bg-sky-50 text-[#16a0fb]' : 'bg-slate-100/80 text-slate-400'}`}>
-                    <span className="text-[12px] leading-tight">代墊</span>
-                    <span className="text-[14px] leading-tight font-medium">NT$ {paid.toLocaleString()}</span>
+                <div className="flex items-center gap-1.5">
+                  <div className={`flex-1 flex flex-col items-center px-2 py-1.5 rounded-xl ${paid > 0 ? 'bg-sky-50 text-[#16a0fb]' : 'bg-slate-100/80 text-slate-400'}`}>
+                    <span className="text-[11px] leading-tight">代墊</span>
+                    <span className="text-[13px] leading-tight font-bold">NT$ {paid.toLocaleString()}</span>
                   </div>
-                  <div className={`inline-flex flex-col items-end px-3 py-1 rounded-xl ${shouldPay > 0 ? 'bg-rose-50 text-rose-500' : 'bg-slate-100/80 text-slate-400'}`}>
-                    <span className="text-[12px] leading-tight">應分攤</span>
-                    <span className="text-[14px] leading-tight font-medium">NT$ {shouldPay.toLocaleString()}</span>
+                  <div className={`flex-1 flex flex-col items-center px-2 py-1.5 rounded-xl ${shouldPay > 0 ? 'bg-rose-50 text-rose-500' : 'bg-slate-100/80 text-slate-400'}`}>
+                    <span className="text-[11px] leading-tight">應分攤</span>
+                    <span className="text-[13px] leading-tight font-bold">NT$ {shouldPay.toLocaleString()}</span>
                   </div>
                 </div>
               </div>
