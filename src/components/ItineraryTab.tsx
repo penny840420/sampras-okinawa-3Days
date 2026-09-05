@@ -206,7 +206,7 @@ export const ItineraryTab = ({
                       key={tIdx}
                       className="text-[12px] font-bold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-md border border-sky-100/60"
                     >
-                      💡 {tip}
+                      {tip}
                     </span>
                   ))}
                 </div>

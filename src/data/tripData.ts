@@ -739,8 +739,8 @@ export const TRIP_DATA: DayPlan[] = [
           address: '51-1 Mihama, Makai Resort Chatan 2F, Nakagami-gun Chatan-cho, Okinawa 904-0115',
         },
         tips: [
-          '📋 訂位編號①：IDR6DCZ5・18:45・4名',
-          '📋 訂位編號②：EQHTN9・18:45・3名',
+          '訂位編號①：IDR6DCZ5・18:45・4名',
+          '訂位編號②：EQHTN9・18:45・3名',
         ],
         googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Ryukyu+no+Ushi+Chatan',
       },
