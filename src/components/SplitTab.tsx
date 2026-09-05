@@ -451,7 +451,7 @@ export const SplitTab = () => {
                 團員名單 & 墊款統計 ({memberCount}人)
               </h3>
               <p className="text-xs font-bold text-slate-400">
-                記錄每位團員目前先墊付的公費金額
+                記錄每位團員目前先墊付的公費金額（結算等回國後再算）
               </p>
             </div>
           </div>
@@ -459,7 +459,7 @@ export const SplitTab = () => {
 
         {/* Member Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-          {memberSettlements.map(({ member, paid, shouldPay }) => {
+          {memberSettlements.map(({ member, paid }) => {
             return (
               <div
                 key={member.id}
@@ -475,15 +475,9 @@ export const SplitTab = () => {
                     {member.name}
                   </p>
                 </div>
-                <div className="space-y-1.5">
-                  <div className={`flex items-center justify-between px-3 py-1.5 rounded-xl ${paid > 0 ? 'bg-sky-50 text-[#16a0fb]' : 'bg-slate-100/80 text-slate-400'}`}>
-                    <span className="text-[11px]">代墊</span>
-                    <span className="text-[13px] font-bold">NT$ {paid.toLocaleString()}</span>
-                  </div>
-                  <div className={`flex items-center justify-between px-3 py-1.5 rounded-xl ${shouldPay > 0 ? 'bg-rose-50 text-rose-500' : 'bg-slate-100/80 text-slate-400'}`}>
-                    <span className="text-[11px]">應分攤</span>
-                    <span className="text-[13px] font-bold">NT$ {shouldPay.toLocaleString()}</span>
-                  </div>
+                <div className={`flex items-center justify-between px-3 py-1.5 rounded-xl ${paid > 0 ? 'bg-sky-50 text-[#16a0fb]' : 'bg-slate-100/80 text-slate-400'}`}>
+                  <span className="text-[11px]">代墊</span>
+                  <span className="text-[13px] font-bold">NT$ {paid.toLocaleString()}</span>
                 </div>
               </div>
             );
