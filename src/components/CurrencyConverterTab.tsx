@@ -65,7 +65,9 @@ export const CurrencyConverterTab = () => {
     setActiveInput('jpy');
     const num = parseFloat(val);
     if (!isNaN(num)) {
-      const finalJpy = taxFreeMode ? num / 1.1 : num;
+      const autoTaxFree = num >= 5500;
+      setTaxFreeMode(autoTaxFree);
+      const finalJpy = autoTaxFree ? num / 1.1 : num;
       setTwdAmount((finalJpy * exchangeRate).toFixed(0));
     } else {
       setTwdAmount('');
