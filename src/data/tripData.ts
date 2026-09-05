@@ -1082,9 +1082,9 @@ export const DEFAULT_EXPENSES: Expense[] = [
   {
     id: 'exp-flight',
     day: 1,
-    amount: 55410,
+    amount: 74910,
     category: '交通',
-    note: '全員 7 人來回機票 (早鳥機票公費結清)',
+    note: '5 人來回機票＋其他交通費支出',
     payerId: 'fund',
     splitWithIds: ['m-1', 'm-2', 'm-3', 'm-4', 'm-5', 'm-6', 'm-7'],
     createdAt: '9/15 11:00',
