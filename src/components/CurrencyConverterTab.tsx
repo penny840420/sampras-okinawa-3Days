@@ -158,27 +158,15 @@ export const CurrencyConverterTab = () => {
           )}
         </div>
 
-        {/* Tax-free mode toggle */}
-        <div className="bg-amber-50/70 border border-amber-200/60 p-3.5 rounded-2xl space-y-2.5">
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-2">
-              <ShoppingBag size={18} className="text-amber-600 shrink-0" />
-              <span className="text-[16px] font-black text-slate-800 leading-none">日本免稅 10% 試算</span>
-            </div>
-            <div className="text-[14px] text-slate-500 font-normal ml-[26px]">
-              消費滿 ¥5,500(含稅) 可享免稅
-            </div>
+        {/* Tax-free info */}
+        <div className="bg-amber-50/70 border border-amber-200/60 p-3.5 rounded-2xl">
+          <div className="flex items-center gap-2">
+            <ShoppingBag size={18} className="text-amber-600 shrink-0" />
+            <span className="text-[16px] font-black text-slate-800 leading-none">日本免稅 10% 試算</span>
           </div>
-          <button
-            onClick={toggleTaxFree}
-            className={`w-full py-2 px-3 rounded-xl text-xs font-black transition-all flex items-center justify-center ${
-              taxFreeMode
-                ? 'bg-[#ef652d] text-white shadow-xs'
-                : 'bg-white text-slate-600 border border-slate-200 hover:bg-white/80'
-            }`}
-          >
-            {taxFreeMode ? '✓ 免稅折抵中 (-10%)' : '未開啟免稅'}
-          </button>
+          <div className="text-[14px] text-slate-500 font-normal ml-[26px] mt-1">
+            消費滿 ¥5,500(含稅) 可享免稅，自動折抵計算
+          </div>
         </div>
 
         {/* JPY Input */}
