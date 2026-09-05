@@ -719,7 +719,7 @@ export const TRIP_DATA: DayPlan[] = [
       {
         id: 'd1-4',
         name: '晚餐：琉球的牛 (和牛炭火燒肉)',
-        time: '18:30 - 20:30',
+        time: '18:45 - 20:30',
         image: ryukyuBeefImg,
         budget: {
           unitPriceTwd: '1,624',
@@ -729,8 +729,18 @@ export const TRIP_DATA: DayPlan[] = [
         },
         description: '享用沖繩最負盛名的頂級和牛炭火燒肉！大啖油花均勻細緻的極品縣產和牛與特選牛舌，飯店/民宿走過去約 5-10 分鐘。',
         category: 'food',
+        reservation: {
+          id: 'IDR6DCZ5',
+          date: '2026/10/1 18:45',
+          pax: 4,
+          status: '確定預約',
+          restaurant: 'Ryukyu no Ushi Chatan',
+          phone: '098-989-3405',
+          address: '51-1 Mihama, Makai Resort Chatan 2F, Nakagami-gun Chatan-cho, Okinawa 904-0115',
+        },
         tips: [
-          '預約制燒肉名店',
+          '📋 訂位編號：IDR6DCZ5・18:45・4名',
+          '確定預約！直接報訂位編號即可入座',
         ],
         googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Ryukyu+no+Ushi+Chatan',
       },

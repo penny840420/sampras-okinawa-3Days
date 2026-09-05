@@ -25,6 +25,15 @@ export interface Spot {
   openHours?: string;
   vrUrl?: string;
   rating?: number;
+  reservation?: {
+    id: string;
+    date: string;
+    pax: number;
+    status: string;
+    restaurant?: string;
+    phone?: string;
+    address?: string;
+  };
 }
 
 export type SouvenirCategory = '熱門伴手禮' | '在地小吃' | '美妝保養' | '在地飲品';
