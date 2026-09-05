@@ -194,9 +194,9 @@ export const CurrencyConverterTab = () => {
         </div>
 
         {/* Arrow separator */}
-        <div className="flex justify-center -my-2 relative z-10">
-          <div className="w-8 h-8 rounded-full bg-sky-500 text-white flex items-center justify-center shadow-md border-2 border-white">
-            <ArrowRightLeft size={14} />
+        <div className="flex justify-center relative z-10">
+          <div className="w-9 h-9 rounded-full bg-sky-500 text-white flex items-center justify-center shadow-md border-2 border-white">
+            <ArrowRightLeft size={15} />
           </div>
         </div>
 
