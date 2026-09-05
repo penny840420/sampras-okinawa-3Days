@@ -1071,7 +1071,7 @@ export const BUDGET_CATEGORIES_PLAN: BudgetCategoryPlan[] = [
 export const TEAM_MEMBERS: Friend[] = [
   { id: 'm-7', name: 'Kit', avatar: '✈️', avatarImg: kitAvatarImg, department: '團員' },
   { id: 'm-1', name: 'Terry', avatar: '👨‍💼', avatarImg: terryAvatarImg, department: '團員' },
-  { id: 'm-2', name: 'Sephi', avatar: '🌸', avatarImg: sophieAvatarImg, department: '團員' },
+  { id: 'm-2', name: 'Sephie', avatar: '🌸', avatarImg: sophieAvatarImg, department: '團員' },
   { id: 'm-4', name: 'Kama', avatar: '🏄‍♂️', avatarImg: kamaAvatarImg, department: '團員' },
   { id: 'm-3', name: 'Penny', avatar: '✨', avatarImg: pennyAvatarImg, department: '主辦 / 召集' },
   { id: 'm-6', name: 'James', avatar: '📸', avatarImg: jamesAvatarImg, department: '影像紀錄' },
