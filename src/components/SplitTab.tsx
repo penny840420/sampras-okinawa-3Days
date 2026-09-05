@@ -591,19 +591,6 @@ export const SplitTab = () => {
                         NT$ {item.amount.toLocaleString()}
                       </p>
                     </div>
-                    {item.splitWithIds && item.splitWithIds.length > 0 && (
-                      <div className="flex items-center justify-between">
-                        <p className="text-[11px] text-slate-400 whitespace-nowrap overflow-x-auto no-scrollbar">
-                          <span className="font-bold">分攤人: </span>{item.splitWithIds.map(id => {
-                            if (id === 'fund') return '公費';
-                            return TEAM_MEMBERS.find(m => m.id === id)?.name ?? id;
-                          }).join('・')}
-                        </p>
-                        <p className="text-[11px] font-bold text-slate-500 shrink-0 whitespace-nowrap ml-2">
-                          每人約 NT$ {Math.round(item.amount / item.splitWithIds.length).toLocaleString()}
-                        </p>
-                      </div>
-                    )}
                   </div>
                 </div>
               );
@@ -767,64 +754,6 @@ export const SplitTab = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between mb-1.5">
-                    <label className="text-[14px] font-bold text-slate-600">
-                      分攤人員 ({selectedSplitIds.length} 個項目)
-                    </label>
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setSelectedSplitIds(
-                            selectedSplitIds.length === TEAM_MEMBERS.length && !selectedSplitIds.includes('fund')
-                              ? []
-                              : TEAM_MEMBERS.map((m) => m.id)
-                          )
-                        }
-                        className="text-[12px] font-bold text-[#0086c9] hover:underline"
-                      >
-                        7位成員
-                      </button>
-                      <span className="text-slate-300">|</span>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setSelectedSplitIds(
-                            selectedSplitIds.length === splitOptions.length
-                              ? []
-                              : splitOptions.map((o) => o.id)
-                          )
-                        }
-                        className="text-[12px] font-bold text-slate-500 hover:text-slate-700 hover:underline"
-                      >
-                        {selectedSplitIds.length === splitOptions.length ? '清除全選' : '全選 (含公費)'}
-                      </button>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-4 gap-1.5">
-                    {splitOptions.map((opt) => {
-                      const isSelected = selectedSplitIds.includes(opt.id);
-                      return (
-                        <button
-                          type="button"
-                          key={opt.id}
-                          onClick={() => toggleMemberSplit(opt.id)}
-                          className={`w-full py-2 px-1 text-center rounded-xl text-[12px] font-bold transition-all flex items-center justify-center ${
-                            isSelected
-                              ? 'bg-[#ef652d] text-white shadow-xs'
-                              : 'bg-slate-50 text-slate-600 border border-slate-200 hover:border-slate-300'
-                          }`}
-                        >
-                          {opt.name}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {selectedSplitIds.length > 0 && Number(newAmount) > 0 && (
-                    <p className="text-[11px] font-black text-[#0086c9] mt-1.5">
-                      每人約 NT$ {Math.round((currency === 'JPY' ? Math.round(Number(newAmount) * jpyExchangeRate) : Number(newAmount)) / selectedSplitIds.length).toLocaleString()}
-                    </p>
-                  )}
                 </div>
 
                 <div className="pt-2">
